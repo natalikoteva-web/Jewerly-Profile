@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DALIN — Ювелирные украшения</title>
+<meta name="theme-color" content="#0f0f10">
+<style>
+/* ----- Палитра (люкс) ----- */
+:root{
+  --bg:#0f0f10; --bg-2:#141416; --panel:#f5f3ef;
+  --text:#eee9dd; --muted:#bcb6a6; --beige:#b3a58f;
+  --gold:#d4af37; --gold-20:rgba(212,175,55,.20);
+  --line:rgba(255,255,255,.08);
+  --radius-xl:22px; --radius-lg:16px; --maxw:1200px;
+  scroll-behavior:smooth;
+}
+/* ----- База ----- */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.section{padding:92px 0;position:relative}
+html{scroll-padding-top:86px}
+
+/* ----- Хедер ----- */
+.header{position:sticky;top:0;z-index:1000;backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:.25s}
+.header.is-scrolled{background:linear-gradient(180deg, rgba(15,15,16,.9), rgba(15,15,16,.7));border-color:var(--line);box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold-20)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);padding:8px 2px;position:relative;transition:.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--gold);transition:right .25s}
+.nav-links a:hover::after,.nav-links a.active::after{right:0}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold);border-radius:999px;padding:10px 16px;background:linear-gradient(180deg,#eadb9f,var(--gold));color:#2b2a28;font-weight:600}
+.burger{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:12px;align-items:center;justify-content:center;background:transparent}
+.burger div{width:20px;height:2px;background:var(--text);position:relative;transition:.25s}
+.burger div::before,.burger div::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--text);transition:.25s}
+.burger div::before{top:-6px}.burger div::after{top:6px}
+.burger.is-open div{background:transparent}
+.burger.is-open div::before{transform:translateY(6px) rotate(45deg)}
+.burger.is-open div::after{transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:920px){
+  .nav-links{display:none;position:absolute;top:74px;left:0;right:0;padding:14px 22px 18px;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}
+  .nav-links.open{display:flex}
+  .nav-cta{display:none}
+  .burger{display:flex}
+}
+
+/* ----- Hero ----- */
+.hero{
+  padding:72px 0 110px;overflow:hidden;background:
+  radial-gradient(1100px 600px at 85% -10%, rgba(212,175,55,.18), transparent 60%),
+  radial-gradient(900px 520px at 0% 20%, rgba(212,175,55,.10), transparent 60%),
+  var(--bg);
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center}
+.h1{font-size:clamp(34px,4.8vw,62px);line-height:1.05;margin:12px 0 16px;font-weight:800}
+.lead{color:var(--muted);max-width:48ch}
+.kicker{color:var(--beige);letter-spacing:.25em;text-transform:uppercase;font-size:.8rem}
+.cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 18px;border-radius:999px;border:1px solid var(--gold);background:linear-gradient(180deg,#e7d79a,var(--gold));color:#2b2a28;font-weight:600;box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 10px 22px rgba(212,175,55,.25);transition:.2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-outline{border:1px solid var(--line);background:transparent;color:var(--text);box-shadow:none}
+.hero-media{border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 36px rgba(0,0,0,.35);position:relative}
+.hero-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5;}
+
+/* ----- Заголовки секций ----- */
+.section-head{margin-bottom:26px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+.section-title{font-size:clamp(26px,3.2vw,38px);font-weight:800}
+.section-desc{color:var(--muted);max-width:60ch}
+.divider{height:1px;background:linear-gradient(to right, transparent, rgba(212,175,55,.4), transparent);margin:12px 0 22px}
+
+/* ----- Грид карточек ----- */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.card{grid-column:span 4;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.00));box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.35);box-shadow:0 16px 42px rgba(0,0,0,.38)}
+.card-media{position:relative;overflow:hidden}
+.card-media img{width:100%;height:360px;object-fit:cover}
+.badge{position:absolute;top:12px;left:12px;padding:6px 10px;border-radius:999px;background:rgba(21,21,22,.78);border:1px solid var(--line);font-size:.78rem;letter-spacing:.08em}
+.card-body{padding:16px 16px 18px}
+.card-title{font-weight:700;margin-bottom:6px}
+.card-meta{color:var(--muted);font-size:.96rem}
+.grid .span-6{grid-column:span 6}
+@media (max-width:1000px){.card{grid-column:span 6}}
+@media (max-width:640px){.card,.grid .span-6{grid-column:1/-1}.card-media img{height:300px}}
+
+/* ----- About ----- */
+.about{background:linear-gradient(180deg,var(--panel),#ede8dc);color:#2b2a28;border-radius:22px;border:1px solid rgba(0,0,0,.06);overflow:hidden}
+.about .inner{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;padding:34px}
+.about p{color:#4c4a44}
+.points{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{border:1px dashed rgba(0,0,0,.2);padding:12px 14px;border-radius:999px;background:#fff;color:#2b2a28;font-weight:700}
+.about .media{border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.06);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.about .media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+@media (max-width:920px){.about .inner{grid-template-columns:1fr}.points{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.points{grid-template-columns:1fr}}
+
+/* ----- Care ----- */
+.alt{background:linear-gradient(180deg,#121213,#0f0f10)}
+.panel{background:var(--panel);color:#2b2a28}
+.care{background:linear-gradient(180deg,#131314,#0e0e0f);border:1px solid var(--line);border-radius:22px;padding:28px}
+details{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#111112;margin-bottom:12px}
+details[open]{background:#0f0f10;border-color:rgba(212,175,55,.28)}
+summary{cursor:pointer;font-weight:700}
+
+/* ----- Footer ----- */
+.footer{padding:36px 0 56px;color:var(--muted);border-top:1px solid var(--line)}
+.footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}
+.soc{display:flex;gap:12px;margin-top:12px}
+.soc a{border:1px solid var(--line);padding:8px 10px;border-radius:999px}
+
+/* ----- Анимации появления ----- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container nav">
+    <div class="brand"><span class="dot"></span> DALIN</div>
+    <nav class="nav-links" id="navLinks" aria-label="Главное меню">
+      <a href="#hero">Главная</a>
+      <a href="#about">О нас</a>
+      <a href="#collections">Коллекции</a>
+      <a href="#new">Новинки</a>
+      <a href="#care">Уход</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <a class="nav-cta" href="#collections">Смотреть коллекции</a>
+    <button class="burger" id="burger" aria-label="Меню"><div></div></button>
+  </div>
+</header>
+
+<section class="hero section" id="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="kicker">Ручная отделка · Этика · Вневременная эстетика</div>
+      <h1 class="h1">Украшения, созданные сиять дольше, чем тренды</h1>
+      <p class="lead">Изысканные металлы и природные камни в коллекциях, вдохновлённых лунным светом.</p>
+      <div class="cta">
+        <a class="btn" href="#collections">Смотреть коллекции</a>
+        <a class="btn btn-outline" href="#new">Новинки</a>
+      </div>
+    </div>
+    <!-- встроенная «картинка»: SVG-заглушка -->
+    <div class="hero-media reveal" aria-hidden="true">
+      <img src="images/hero.jpg" alt="Главное фото украшений">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about">
+    <div class="inner">
+      <div class="reveal">
+        <h2 class="section-title">Кто мы</h2>
+        <div class="divider"></div>
+        <p>DALIN — независимое ювелирное ателье. Малые тиражи, подтверждённое происхождение материалов и аккуратная посадка.</p>
+        <div class="points">
+          <span class="pill">Серебро 925 / Золото 585</span>
+          <span class="pill">Этичные поставки</span>
+          <span class="pill">Гарантия 12 месяцев</span>
+        </div>
+      </div>
+      <div class="media reveal">
+        <img src="images/about.jpg" alt="Мастер за работой">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="collections">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Коллекции</h2>
+      <p class="section-desc">Строгая геометрия, жемчуг и скульптурные формы — ограниченные тиражи.</p>
+    </div>
+    <div class="grid">
+      <!-- карточка 1 -->
+      <article class="card reveal">
+        <div class="card-media">
+          <img src="images/collection1.jpg" alt="Коллекция Геометрия">
+          <span class="badge">GEOMETRIA</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Геометрия Света</div>
+          <div class="card-meta">Архитектурные плоскости, лаконичные контуры.</div>
+        </div>
+      </article>
+      <!-- карточка 2 -->
+      <article class="card reveal">
+        <div class="card-media">
+          <img src="images/collection2.jpg" alt="Коллекция Жемчуг">
+          <span class="badge">PERLA</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Лунный Жемчуг</div>
+          <div class="card-meta">Мягкий перламутровый блеск и округлость.</div>
+        </div>
+      </article>
+      <!-- карточка 3 -->
+      <article class="card reveal">
+        <div class="card-media">
+          <img src="images/collection3.jpg" alt="Коллекция Скульптура">
+          <span class="badge">SCULPT</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Скульптура Тишины</div>
+          <div class="card-meta">Тактильные формы и мягкие изгибы.</div>
+        </div>
+      </article>
+      <!-- карточка 4 (шире) -->
+      <article class="card span-6 reveal">
+        <div class="card-media">
+          <img src="images/collection4.jpg" alt="Коллекция Noir">
+          <span class="badge">NOIR</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Noir</div>
+          <div class="card-meta">Контраст золота и глубины чёрного.</div>
+        </div>
+      </article>
+      <!-- карточка 5 (шире) -->
+      <article class="card span-6 reveal">
+        <div class="card-media">
+          <img src="images/collection5.jpg" alt="Коллекция Aurora">
+          <span class="badge">AURORA</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Aurora</div>
+          <div class="card-meta">Искры рассвета и прозрачные вставки.</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="new">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Новинки</h2>
+      <p class="section-desc">Последние поступления лимитированной серии.</p>
+    </div>
+    <div class="grid">
+      <article class="card reveal">
+        <div class="card-media">
+          <img src="images/new1.jpg" alt="Кольцо «Соль»">
+          <span class="badge">Новинка</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Кольцо «Соль»</div>
+          <div class="card-meta">Золото 585, бриллиант 0.07ct</div>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card-media">
+          <img src="images/new2.jpg" alt="Серьги «Луна»">
+          <span class="badge">Новинка</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Серьги «Луна»</div>
+          <div class="card-meta">Золото 585, Ø 18 мм</div>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card-media">
+          <img src="images/new3.jpg" alt="Браслет «Тишина»">
+          <span class="badge">Новинка</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Браслет «Тишина»</div>
+          <div class="card-meta">Золото 585, звено якорное</div>
+        </div>
+      </article>
+    </div>
+    <div class="cta" style="margin-top:24px">
+      <a class="btn" href="#contact">Записаться на примерку</a>
+      <a class="btn btn-outline" href="#collections">Все коллекции</a>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="care">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Уход за украшениями</h2>
+      <p class="section-desc">Простые шаги, чтобы ваши украшения сияли дольше.</p>
+    </div>
+    <div class="care reveal">
+      <details open><summary>Ежедневный уход</summary><p style="color:var(--muted)">Снимайте украшения перед душем и спортом. Протирайте микрофиброй после носки.</p></details>
+      <details><summary>Хранение</summary><p style="color:var(--muted)">Храните изделия отдельно в мягких мешочках/секциях шкатулки.</p></details>
+      <details><summary>Глубокая очистка</summary><p style="color:var(--muted)">Тёплая вода + капля мягкого мыла, 10 минут, мягкая щётка, сушка.</p></details>
+      <details><summary>Профессиональный сервис</summary><p style="color:var(--muted)">Реставрация покрытия, реполировка, корректировка размера.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section panel" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Контакты и шоу-рум</h2>
+      <p class="section-desc">Оставьте заявку на примерку или консультацию.</p>
+    </div>
+    <div class="about" style="background:#fff;border:none;">
+      <div class="inner" style="padding:26px;">
+        <div>
+          <h3 style="margin-top:0">Запись на визит</h3>
+          <div class="divider" style="background:linear-gradient(to right, transparent, rgba(212,175,55,.6), transparent);"></div>
+          <form onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');" class="reveal" aria-label="Форма">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <label>Имя<br><input required type="text" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e7e2d7;background:#fff;"></label>
+              <label>Телефон или Email<br><input required type="text" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e7e2d7;background:#fff;"></label>
+            </div>
+            <label style="display:block;margin-top:10px;">Комментарий<br>
+              <textarea rows="4" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e7e2d7;background:#fff;"></textarea>
+            </label>
+            <button class="btn" type="submit" style="margin-top:14px;">Отправить заявку</button>
+          </form>
+        </div>
+        <div class="media reveal">
+          <img src="images/showroom.jpg" alt="Интерьер шоу-рума">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand"><span class="dot"></span> DALIN</div>
+        <p class="note">Украшения, сделанные бережно. © <span id="year"></span> DALIN.</p>
+        <div class="soc">
+          <a href="#">Instagram</a><a href="#">Telegram</a><a href="#">WhatsApp</a>
+        </div>
+      </div>
+      <div><strong>Поддержка</strong><br><small>help@dalin.example</small><br><small>+7 (900) 000-00-00</small></div>
+      <div><strong>Адрес шоу-рума</strong><br><small>Москва, Большая Никитская, 25с1</small><br><small>Ежедневно 11:00–20:00</small></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Год
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Хедер фон при скролле
+const header = document.getElementById('header');
+const setHeaderState = ()=> header.classList.toggle('is-scrolled', window.scrollY>4);
+setHeaderState(); window.addEventListener('scroll', setHeaderState, {passive:true});
+
+// Бургер-меню
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', ()=>{ burger.classList.toggle('is-open'); navLinks.classList.toggle('open'); });
+
+// Плавная прокрутка
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id=a.getAttribute('href'); if(id.length>1){ const el=document.querySelector(id);
+      if(el){ e.preventDefault(); const top=el.getBoundingClientRect().top+window.scrollY-80; window.scrollTo({top,behavior:'smooth'});
+             navLinks.classList.remove('open'); burger.classList.remove('is-open'); }
+    }}
+  );
+});
+
+// Подсветка активного пункта
+const sections=[...document.querySelectorAll('section[id]')];
+const links=[...document.querySelectorAll('.nav-links a')];
+const spy=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    const id=entry.target.id; const link=links.find(l=>l.getAttribute('href')==='#'+id);
+    if(entry.isIntersecting && link){ links.forEach(l=>l.classList.remove('active')); link.classList.add('active'); }
+  });
+},{rootMargin:'-55% 0px -42% 0px',threshold:0.01});
+sections.forEach(s=>spy.observe(s));
+
+// Reveal-on-scroll
+const revealEls=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+},{threshold:0.18});
+revealEls.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
