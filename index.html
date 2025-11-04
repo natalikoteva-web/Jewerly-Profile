@@ -1,12 +1,25 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DALIN — Ювелирные украшения</title>
+<title>DALIN — ювелирные украшения из золота и серебра</title>
+<meta name="description" content="DALIN — ювелирные украшения из золота 585 и серебра 925 с ручной отделкой. Коллекции, новинки и рекомендации по уходу в нашем ювелирном доме.">
+<link rel="canonical" href="https://dalin.example/">
 <meta name="theme-color" content="#0f0f10">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="DALIN">
+<meta property="og:title" content="DALIN — ювелирные украшения из золота и серебра">
+<meta property="og:description" content="Авторские коллекции ювелирных украшений из золота 585 и серебра 925 с ручной отделкой, новинки и уход за изделиями.">
+<meta property="og:url" content="https://dalin.example/">
+<meta property="og:image" content="https://dalin.example/images/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DALIN — ювелирные украшения">
+<meta name="twitter:description" content="Коллекции украшений DALIN: золото 585, серебро 925, новинки и советы по уходу.">
+<meta name="twitter:image" content="https://dalin.example/images/og-cover.jpg">
 <style>
-/* ----- Палитра (люкс) ----- */
+/* ----- РџР°Р»РёС‚СЂР° (Р»СЋРєСЃ) ----- */
 :root{
   --bg:#0f0f10; --bg-2:#141416; --panel:#f5f3ef;
   --text:#eee9dd; --muted:#bcb6a6; --beige:#b3a58f;
@@ -15,27 +28,32 @@
   --radius-xl:22px; --radius-lg:16px; --maxw:1200px;
   scroll-behavior:smooth;
 }
-/* ----- База ----- */
+/* ----- Р‘Р°Р·Р° ----- */
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
 a{text-decoration:none;color:inherit}
+.skip-link{position:absolute;left:-999px;top:auto;padding:12px 20px;border-radius:12px;background:var(--gold);color:#2b2a28;font-weight:600;z-index:1001;transition:transform .3s ease,left .3s ease,opacity .3s ease;opacity:0;transform:translateY(-12px)}
+.skip-link:focus-visible{left:16px;top:16px;transform:translateY(0);opacity:1;outline:3px solid #fff;outline-offset:2px;box-shadow:0 12px 24px rgba(212,175,55,.35)}
 img{max-width:100%;display:block}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-.section{padding:92px 0;position:relative}
+.section{padding:clamp(108px, 14vw, 168px) 0;position:relative}
 html{scroll-padding-top:86px}
 
-/* ----- Хедер ----- */
+/* ----- РҐРµРґРµСЂ ----- */
 .header{position:sticky;top:0;z-index:1000;backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:.25s}
 .header.is-scrolled{background:linear-gradient(180deg, rgba(15,15,16,.9), rgba(15,15,16,.7));border-color:var(--line);box-shadow:0 8px 24px rgba(0,0,0,.22)}
 .nav{height:74px;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
 .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold-20)}
 .nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{color:var(--muted);padding:8px 2px;position:relative;transition:.2s}
+.nav-links a{color:var(--muted);padding:8px 16px;position:relative;transition:color .2s ease,background-color .35s cubic-bezier(.2,.7,.2,1);border-radius:999px;isolation:isolate;overflow:hidden}
+.nav-links a::before{content:"";position:absolute;inset:-6px;background:var(--gold-20);opacity:0;transform:scaleX(.6);transform-origin:left;transition:opacity .35s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1);z-index:-1;border-radius:inherit}
+.nav-links a::after{content:"";position:absolute;left:12px;right:calc(100% - 12px);bottom:4px;height:2px;background:var(--gold);transition:right .45s cubic-bezier(.2,.7,.2,1)}
 .nav-links a:hover{color:var(--text)}
-.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--gold);transition:right .25s}
-.nav-links a:hover::after,.nav-links a.active::after{right:0}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold);border-radius:999px;padding:10px 16px;background:linear-gradient(180deg,#eadb9f,var(--gold));color:#2b2a28;font-weight:600}
+.nav-links a:hover::before,.nav-links a:focus-visible::before,.nav-links a[aria-current="page"]::before{opacity:1;transform:scaleX(1)}
+.nav-links a:hover::after,.nav-links a:focus-visible::after,.nav-links a[aria-current="page"]::after{right:12px}
+.nav-links a[aria-current="page"]{color:var(--text);font-weight:600}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold);border-radius:999px;padding:10px 16px;background:linear-gradient(180deg,#eadb9f,var(--gold));color:#2b2a28;font-weight:600;position:relative;overflow:hidden;isolation:isolate}
 .burger{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:12px;align-items:center;justify-content:center;background:transparent}
 .burger div{width:20px;height:2px;background:var(--text);position:relative;transition:.25s}
 .burger div::before,.burger div::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--text);transition:.25s}
@@ -43,6 +61,7 @@ html{scroll-padding-top:86px}
 .burger.is-open div{background:transparent}
 .burger.is-open div::before{transform:translateY(6px) rotate(45deg)}
 .burger.is-open div::after{transform:translateY(-6px) rotate(-45deg)}
+.nav-cta:focus-visible,.btn:focus-visible,.btn-outline:focus-visible,.nav-links a:focus-visible,.burger:focus-visible,.soc a:focus-visible{outline:2px solid #fff;outline-offset:4px;box-shadow:0 0 0 4px rgba(212,175,55,.35)}
 @media (max-width:920px){
   .nav-links{display:none;position:absolute;top:74px;left:0;right:0;padding:14px 22px 18px;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}
   .nav-links.open{display:flex}
@@ -52,41 +71,71 @@ html{scroll-padding-top:86px}
 
 /* ----- Hero ----- */
 .hero{
-  padding:72px 0 110px;overflow:hidden;background:
+  padding:clamp(120px, 16vw, 200px) 0 clamp(140px, 22vw, 240px);overflow:hidden;background:
   radial-gradient(1100px 600px at 85% -10%, rgba(212,175,55,.18), transparent 60%),
   radial-gradient(900px 520px at 0% 20%, rgba(212,175,55,.10), transparent 60%),
   var(--bg);
 }
-.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
 .h1{font-size:clamp(34px,4.8vw,62px);line-height:1.05;margin:12px 0 16px;font-weight:800}
 .lead{color:var(--muted);max-width:48ch}
 .kicker{color:var(--beige);letter-spacing:.25em;text-transform:uppercase;font-size:.8rem}
 .cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 18px;border-radius:999px;border:1px solid var(--gold);background:linear-gradient(180deg,#e7d79a,var(--gold));color:#2b2a28;font-weight:600;box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 10px 22px rgba(212,175,55,.25);transition:.2s}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 18px;border-radius:999px;border:1px solid var(--gold);background:linear-gradient(180deg,#e7d79a,var(--gold));color:#2b2a28;font-weight:600;box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 10px 22px rgba(212,175,55,.25);transition:.2s;position:relative;overflow:hidden;isolation:isolate}
 .btn:hover{transform:translateY(-1px)}
 .btn-outline{border:1px solid var(--line);background:transparent;color:var(--text);box-shadow:none}
+.btn::after,.nav-cta::after{content:"";position:absolute;inset:-140% -50%;background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.65) 50%,transparent 65%);animation:shimmer 3.6s linear infinite;pointer-events:none;opacity:.6}
+.btn:hover::after,.nav-cta:hover::after{animation-duration:2.4s}
 .hero-media{border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 36px rgba(0,0,0,.35);position:relative}
 .hero-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5;}
+.hero .reveal>*{opacity:0;transform:translateY(18px)}
+.hero .reveal.in>*{animation:hero-stagger .8s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .reveal.in>*:nth-child(1){animation-delay:.1s}
+.hero .reveal.in>*:nth-child(2){animation-delay:.3s}
+.hero .reveal.in>*:nth-child(3){animation-delay:.45s}
+.hero .reveal.in>*:nth-child(4){animation-delay:.6s}
+@keyframes hero-stagger{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes shimmer{
+  0%{transform:translateX(-120%)}
+  100%{transform:translateX(200%)}
+}
 
-/* ----- Заголовки секций ----- */
+/* ----- Р—Р°РіРѕР»РѕРІРєРё СЃРµРєС†РёР№ ----- */
 .section-head{margin-bottom:26px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
 .section-title{font-size:clamp(26px,3.2vw,38px);font-weight:800}
 .section-desc{color:var(--muted);max-width:60ch}
 .divider{height:1px;background:linear-gradient(to right, transparent, rgba(212,175,55,.4), transparent);margin:12px 0 22px}
 
-/* ----- Грид карточек ----- */
+/* ----- Р“СЂРёРґ РєР°СЂС‚РѕС‡РµРє ----- */
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-.card{grid-column:span 4;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.00));box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.2s}
-.card:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.35);box-shadow:0 16px 42px rgba(0,0,0,.38)}
-.card-media{position:relative;overflow:hidden}
-.card-media img{width:100%;height:360px;object-fit:cover}
-.badge{position:absolute;top:12px;left:12px;padding:6px 10px;border-radius:999px;background:rgba(21,21,22,.78);border:1px solid var(--line);font-size:.78rem;letter-spacing:.08em}
-.card-body{padding:16px 16px 18px}
-.card-title{font-weight:700;margin-bottom:6px}
-.card-meta{color:var(--muted);font-size:.96rem}
+.card{grid-column:span 4;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.00));box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s ease,box-shadow .35s ease;position:relative}
+.card:hover{transform:translateY(-6px);border-color:rgba(212,175,55,.38);box-shadow:0 18px 48px rgba(0,0,0,.4)}
+.card-media{position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.04)}
+.card-media img{width:100%;height:360px;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform:translateY(var(--parallax,0)) scale(var(--scale,1));will-change:transform}
+.card:hover .card-media img{--scale:1.04}
+.card-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(212,175,55,0) 0%, rgba(212,175,55,.22) 65%, rgba(15,15,16,.65) 100%);opacity:0;transition:opacity .35s cubic-bezier(.2,.7,.2,1)}
+.card-media::before{content:attr(data-cta);position:absolute;left:16px;right:16px;bottom:18px;padding:10px 18px;border-radius:14px;background:rgba(21,21,22,.82);color:#f5f3ef;font-weight:600;letter-spacing:.14em;font-size:.72rem;text-transform:uppercase;text-align:center;opacity:0;transform:translateY(18px);transition:opacity .35s cubic-bezier(.2,.7,.2,1),transform .35s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card-media::after,.card:focus-within .card-media::after{opacity:1}
+.card:hover .card-media::before,.card:focus-within .card-media::before{opacity:1;transform:translateY(0)}
+.badge{position:absolute;top:12px;left:12px;padding:6px 10px;border-radius:999px;background:rgba(21,21,22,.78);border:1px solid var(--line);font-size:.78rem;letter-spacing:.08em;overflow:hidden}
+.badge::after{content:"";position:absolute;inset:-140% 40%;background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.65) 50%,transparent 65%);transform:translateX(-120%);animation:shimmer 4.2s linear infinite}
+.card-body{padding:18px 18px 22px;min-height:168px;display:flex;flex-direction:column;gap:10px}
+.card-title{font-weight:700;margin-bottom:4px}
+.card-meta{color:rgba(76,74,68,.72);font-size:.96rem;letter-spacing:.08em;text-transform:uppercase}
 .grid .span-6{grid-column:span 6}
-@media (max-width:1000px){.card{grid-column:span 6}}
-@media (max-width:640px){.card,.grid .span-6{grid-column:1/-1}.card-media img{height:300px}}
+  @media (max-width:1000px){.card{grid-column:span 6}}
+  @media (max-width:640px){
+    .card,.grid .span-6{grid-column:1/-1}
+    .card-media img{height:300px}
+    .hero{padding:150px 0 220px}
+    .section{padding:132px 0}
+    .cta{margin-top:32px}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-media{order:-1}
+  }
 
 /* ----- About ----- */
 .about{background:linear-gradient(180deg,var(--panel),#ede8dc);color:#2b2a28;border-radius:22px;border:1px solid rgba(0,0,0,.06);overflow:hidden}
@@ -102,284 +151,409 @@ html{scroll-padding-top:86px}
 /* ----- Care ----- */
 .alt{background:linear-gradient(180deg,#121213,#0f0f10)}
 .panel{background:var(--panel);color:#2b2a28}
-.care{background:linear-gradient(180deg,#131314,#0e0e0f);border:1px solid var(--line);border-radius:22px;padding:28px}
-details{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#111112;margin-bottom:12px}
-details[open]{background:#0f0f10;border-color:rgba(212,175,55,.28)}
+  .care{background:linear-gradient(180deg,#131314,#0e0e0f);border:1px solid var(--line);border-radius:22px;padding:28px}
+  details{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#111112;margin-bottom:12px}
+  details[open]{background:#0f0f10;border-color:rgba(212,175,55,.28)}
+.contact-form{display:flex;flex-direction:column;gap:18px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.form-field{display:flex;flex-direction:column;gap:6px;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;color:#6b6558;font-weight:600}
+.form-field input,.form-field textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e7e2d7;background:#fff;font:inherit;color:#2b2a28;transition:border-color .2s ease,box-shadow .2s ease}
+.form-field input:hover,.form-field textarea:hover{border-color:rgba(212,175,55,.3)}
+.form-field input:focus-visible,.form-field textarea:focus-visible{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.25);outline:none}
+.form-field textarea{min-height:132px;resize:vertical}
+.form-field--full{width:100%}
+.form-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.form-status{min-height:1.5em;font-size:.92rem;color:#4c4a44}
+.form-status[data-state="pending"]{color:var(--beige)}
+.form-status[data-state="success"]{color:#31a57a;font-weight:600}
+.form-status[data-state="error"]{color:#d36a6a;font-weight:600}
+.contact-form.is-pending .btn{pointer-events:none;opacity:.7}
 summary{cursor:pointer;font-weight:700}
 
 /* ----- Footer ----- */
-.footer{padding:36px 0 56px;color:var(--muted);border-top:1px solid var(--line)}
-.footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}
-.soc{display:flex;gap:12px;margin-top:12px}
-.soc a{border:1px solid var(--line);padding:8px 10px;border-radius:999px}
+.footer{padding:72px 0 90px;background:var(--bg-2);color:var(--muted)}
+.footer .cols{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:32px;align-items:flex-start}
+.footer .note{max-width:32ch;margin:16px 0}
+.footer .soc{display:flex;gap:14px;margin-top:12px}
+.footer .soc a{color:var(--text);font-weight:500;opacity:.76;transition:opacity .2s ease}
+.footer .soc a:hover{opacity:1}
+.footer strong{color:var(--text)}
+.footer-nav{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.footer-nav a{color:var(--text);opacity:.78;transition:opacity .2s ease}
+.footer-nav a:hover,.footer-nav a:focus-visible{opacity:1}
+@media (max-width:900px){.footer .cols{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.footer .cols{grid-template-columns:1fr;gap:24px}}
 
-/* ----- Анимации появления ----- */
+/* ----- РђРЅРёРјР°С†РёРё РїРѕСЏРІР»РµРЅРёСЏ ----- */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;animation-play-state:paused !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}
+  .reveal,.reveal.in{opacity:1 !important;transform:none !important}
+  .hero .reveal>*{opacity:1 !important;transform:none !important}
+}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "DALIN",
+  "description": "DALIN — ювелирные украшения из золота 585 и серебра 925 с ручной отделкой. Коллекции, новинки и рекомендации по уходу.",
+  "image": "https://dalin.example/images/og-cover.jpg",
+  "url": "https://dalin.example/",
+  "telephone": "+7-900-000-00-00",
+  "email": "help@dalin.example",
+  "priceRange": "$$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Москва, Петровка, 25с1",
+    "addressLocality": "Москва",
+    "postalCode": "125009",
+    "addressCountry": "RU"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "11:00",
+      "closes": "20:00"
+    }
+  ],
+  "sameAs": [
+    "https://instagram.com/dalin",
+    "https://t.me/dalin",
+    "https://wa.me/79000000000"
+  ]
+}
+</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Пропустить к содержимому</a>
 
-<header class="header" id="header">
+  <header class="header" id="header">
   <div class="container nav">
     <div class="brand"><span class="dot"></span> DALIN</div>
-    <nav class="nav-links" id="navLinks" aria-label="Главное меню">
-      <a href="#hero">Главная</a>
-      <a href="#about">О нас</a>
+    <nav class="nav-links" id="navLinks" aria-label="Основная навигация">
+      <a href="#hero" aria-current="page">Главная</a>
+      <a href="#about">О бренде</a>
       <a href="#collections">Коллекции</a>
       <a href="#new">Новинки</a>
       <a href="#care">Уход</a>
       <a href="#contact">Контакты</a>
     </nav>
-    <a class="nav-cta" href="#collections">Смотреть коллекции</a>
-    <button class="burger" id="burger" aria-label="Меню"><div></div></button>
+    <a class="nav-cta" href="#collections">Записаться на презентацию</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false"><div></div></button>
   </div>
 </header>
-
-<section class="hero section" id="hero">
-  <div class="container hero-grid">
-    <div class="reveal">
-      <div class="kicker">Ручная отделка · Этика · Вневременная эстетика</div>
-      <h1 class="h1">Украшения, созданные сиять дольше, чем тренды</h1>
-      <p class="lead">Изысканные металлы и природные камни в коллекциях, вдохновлённых лунным светом.</p>
-      <div class="cta">
-        <a class="btn" href="#collections">Смотреть коллекции</a>
-        <a class="btn btn-outline" href="#new">Новинки</a>
-      </div>
-    </div>
-    <!-- встроенная «картинка»: SVG-заглушка -->
-    <div class="hero-media reveal" aria-hidden="true">
-      <img src="images/hero.jpg" alt="Главное фото украшений">
-    </div>
-  </div>
-</section>
-
-<section class="section" id="about">
-  <div class="container about">
-    <div class="inner">
-      <div class="reveal">
-        <h2 class="section-title">Кто мы</h2>
-        <div class="divider"></div>
-        <p>DALIN — независимое ювелирное ателье. Малые тиражи, подтверждённое происхождение материалов и аккуратная посадка.</p>
-        <div class="points">
-          <span class="pill">Серебро 925 / Золото 585</span>
-          <span class="pill">Этичные поставки</span>
-          <span class="pill">Гарантия 12 месяцев</span>
+  
+    <main id="main">
+    <section class="hero section" id="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="kicker">Ювелирный дом DALIN</div>
+          <h1 class="h1">Украшения из золота 585 и серебра 925 с ручной отделкой</h1>
+          <p class="lead">Мы создаем лимитированные коллекции и индивидуальные заказы, сочетая бриллианты, жемчуг и природные минералы с благородными металлами.</p>
+          <div class="cta">
+            <a class="btn" href="#collections">Смотреть коллекции</a>
+            <a class="btn btn-outline" href="#new">Новинки месяца</a>
+          </div>
+        </div>
+        <div class="hero-media reveal" aria-hidden="true">
+          <img src="images/hero.jpg" srcset="images/hero.jpg 640w, images/hero.jpg 960w, images/hero.jpg 1280w" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 560px" alt="Ювелирная коллекция DALIN в золотом сиянии" fetchpriority="high" decoding="async">
         </div>
       </div>
-      <div class="media reveal">
-        <img src="images/about.jpg" alt="Мастер за работой">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section alt" id="collections">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="section-title">Коллекции</h2>
-      <p class="section-desc">Строгая геометрия, жемчуг и скульптурные формы — ограниченные тиражи.</p>
-    </div>
-    <div class="grid">
-      <!-- карточка 1 -->
-      <article class="card reveal">
-        <div class="card-media">
-          <img src="images/collection1.jpg" alt="Коллекция Геометрия">
-          <span class="badge">GEOMETRIA</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Геометрия Света</div>
-          <div class="card-meta">Архитектурные плоскости, лаконичные контуры.</div>
-        </div>
-      </article>
-      <!-- карточка 2 -->
-      <article class="card reveal">
-        <div class="card-media">
-          <img src="images/collection2.jpg" alt="Коллекция Жемчуг">
-          <span class="badge">PERLA</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Лунный Жемчуг</div>
-          <div class="card-meta">Мягкий перламутровый блеск и округлость.</div>
-        </div>
-      </article>
-      <!-- карточка 3 -->
-      <article class="card reveal">
-        <div class="card-media">
-          <img src="images/collection3.jpg" alt="Коллекция Скульптура">
-          <span class="badge">SCULPT</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Скульптура Тишины</div>
-          <div class="card-meta">Тактильные формы и мягкие изгибы.</div>
-        </div>
-      </article>
-      <!-- карточка 4 (шире) -->
-      <article class="card span-6 reveal">
-        <div class="card-media">
-          <img src="images/collection4.jpg" alt="Коллекция Noir">
-          <span class="badge">NOIR</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Noir</div>
-          <div class="card-meta">Контраст золота и глубины чёрного.</div>
-        </div>
-      </article>
-      <!-- карточка 5 (шире) -->
-      <article class="card span-6 reveal">
-        <div class="card-media">
-          <img src="images/collection5.jpg" alt="Коллекция Aurora">
-          <span class="badge">AURORA</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Aurora</div>
-          <div class="card-meta">Искры рассвета и прозрачные вставки.</div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="new">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="section-title">Новинки</h2>
-      <p class="section-desc">Последние поступления лимитированной серии.</p>
-    </div>
-    <div class="grid">
-      <article class="card reveal">
-        <div class="card-media">
-          <img src="images/new1.jpg" alt="Кольцо «Соль»">
-          <span class="badge">Новинка</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Кольцо «Соль»</div>
-          <div class="card-meta">Золото 585, бриллиант 0.07ct</div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="card-media">
-          <img src="images/new2.jpg" alt="Серьги «Луна»">
-          <span class="badge">Новинка</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Серьги «Луна»</div>
-          <div class="card-meta">Золото 585, Ø 18 мм</div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="card-media">
-          <img src="images/new3.jpg" alt="Браслет «Тишина»">
-          <span class="badge">Новинка</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Браслет «Тишина»</div>
-          <div class="card-meta">Золото 585, звено якорное</div>
-        </div>
-      </article>
-    </div>
-    <div class="cta" style="margin-top:24px">
-      <a class="btn" href="#contact">Записаться на примерку</a>
-      <a class="btn btn-outline" href="#collections">Все коллекции</a>
-    </div>
-  </div>
-</section>
-
-<section class="section alt" id="care">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="section-title">Уход за украшениями</h2>
-      <p class="section-desc">Простые шаги, чтобы ваши украшения сияли дольше.</p>
-    </div>
-    <div class="care reveal">
-      <details open><summary>Ежедневный уход</summary><p style="color:var(--muted)">Снимайте украшения перед душем и спортом. Протирайте микрофиброй после носки.</p></details>
-      <details><summary>Хранение</summary><p style="color:var(--muted)">Храните изделия отдельно в мягких мешочках/секциях шкатулки.</p></details>
-      <details><summary>Глубокая очистка</summary><p style="color:var(--muted)">Тёплая вода + капля мягкого мыла, 10 минут, мягкая щётка, сушка.</p></details>
-      <details><summary>Профессиональный сервис</summary><p style="color:var(--muted)">Реставрация покрытия, реполировка, корректировка размера.</p></details>
-    </div>
-  </div>
-</section>
-
-<section class="section panel" id="contact">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="section-title">Контакты и шоу-рум</h2>
-      <p class="section-desc">Оставьте заявку на примерку или консультацию.</p>
-    </div>
-    <div class="about" style="background:#fff;border:none;">
-      <div class="inner" style="padding:26px;">
-        <div>
-          <h3 style="margin-top:0">Запись на визит</h3>
-          <div class="divider" style="background:linear-gradient(to right, transparent, rgba(212,175,55,.6), transparent);"></div>
-          <form onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');" class="reveal" aria-label="Форма">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-              <label>Имя<br><input required type="text" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e7e2d7;background:#fff;"></label>
-              <label>Телефон или Email<br><input required type="text" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e7e2d7;background:#fff;"></label>
+    </section>
+  
+    <section class="section" id="about">
+      <div class="container about">
+        <div class="inner">
+          <div class="reveal">
+            <h2 class="section-title">О бренде DALIN</h2>
+            <div class="divider"></div>
+            <p>DALIN — московская мастерская, где украшения создаются вручную от эскиза до полировки. Мы соединяем архитектурные формы с ювелирными традициями и сопровождаем клиентов на каждом этапе.</p>
+            <div class="points">
+              <span class="pill">Золото 585 и серебро 925</span>
+              <span class="pill">Авторский дизайн и кастомизация</span>
+              <span class="pill">От 12 рабочих дней до готового комплекта</span>
             </div>
-            <label style="display:block;margin-top:10px;">Комментарий<br>
-              <textarea rows="4" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e7e2d7;background:#fff;"></textarea>
-            </label>
-            <button class="btn" type="submit" style="margin-top:14px;">Отправить заявку</button>
-          </form>
-        </div>
-        <div class="media reveal">
-          <img src="images/showroom.jpg" alt="Интерьер шоу-рума">
+          </div>
+          <div class="media reveal">
+            <img src="images/about.jpg" srcset="images/about.jpg 480w, images/about.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 520px" alt="Мастера DALIN создают ювелирные украшения вручную" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
+    </section>
+  
+    <section class="section alt" id="collections">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Коллекции</h2>
+          <p class="section-desc">Собрали ключевые ювелирные коллекции DALIN с золотом 585, серебром 925 и натуральными камнями. Каждая серия выпускается лимитированным тиражом.</p>
+        </div>
+        <div class="grid">
+          <article class="card reveal">
+            <div class="card-media" data-cta="Смотреть коллекцию">
+              <img src="images/collection1.jpg" srcset="images/collection1.jpg 480w, images/collection1.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 320px" alt="Жемчужная коллекция DALIN — серьги и кольца из серебра 925" loading="lazy" decoding="async">
+              <span class="badge">GEOMETRIA</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Perla Geometria</div>
+              <div class="card-meta">Гладкие линии и жемчужные акценты — серебро 925 с деликатной позолотой.</div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media" data-cta="Смотреть коллекцию">
+              <img src="images/collection2.jpg" srcset="images/collection2.jpg 480w, images/collection2.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 320px" alt="Коллекция DALIN Sculpt — минималистичные украшения из золота 585" loading="lazy" decoding="async">
+              <span class="badge">PERLA</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Linea Aurora</div>
+              <div class="card-meta">Золото 585, бриллианты и мягкие изгибы для вечерних образов.</div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media" data-cta="Смотреть коллекцию">
+              <img src="images/collection3.jpg" srcset="images/collection3.jpg 480w, images/collection3.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 320px" alt="Коллекция DALIN Muse — колье и браслеты из серебра 925" loading="lazy" decoding="async">
+              <span class="badge">SCULPT</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Sculpt Minimal</div>
+              <div class="card-meta">Минималистичные украшения из серебра 925 с матовым эффектом.</div>
+            </div>
+          </article>
+          <article class="card span-6 reveal">
+            <div class="card-media" data-cta="Смотреть коллекцию">
+              <img src="images/collection4.jpg" srcset="images/collection4.jpg 480w, images/collection4.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 420px" alt="Коллекция DALIN Noir — украшения с ониксом и золотом 585" loading="lazy" decoding="async">
+              <span class="badge">NOIR</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Noir Onyx</div>
+              <div class="card-meta">Глянцевый оникс и золото 585 в смелых кольцах и браслетах.</div>
+            </div>
+          </article>
+          <article class="card span-6 reveal">
+            <div class="card-media" data-cta="Смотреть коллекцию">
+              <img src="images/collection5.jpg" srcset="images/collection5.jpg 480w, images/collection5.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 420px" alt="Коллекция DALIN Aurora — золотые украшения с бриллиантовым сиянием" loading="lazy" decoding="async">
+              <span class="badge">AURORA</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Aurora Borealis</div>
+              <div class="card-meta">Градиенты эмали и бриллиантовое сияние в золоте 585.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  
+    <section class="section" id="new">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Новинки</h2>
+          <p class="section-desc">Свежие релизы DALIN: ювелирные украшения ограниченного выпуска с доставкой по России.</p>
+        </div>
+        <div class="grid">
+          <article class="card reveal">
+            <div class="card-media" data-cta="Узнать подробнее">
+              <img src="images/new1.jpg" srcset="images/new1.jpg 480w, images/new1.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 300px" alt="Золотые серьги DALIN с бриллиантами 0.07 карата" loading="lazy" decoding="async">
+              <span class="badge">NEW</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Серьги Lumina</div>
+              <div class="card-meta">Золото 585, бриллианты 0.07 ct и притягивающий блеск.</div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media" data-cta="Узнать подробнее">
+              <img src="images/new2.jpg" srcset="images/new2.jpg 480w, images/new2.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 300px" alt="Золотой браслет DALIN с бриллиантовой дорожкой" loading="lazy" decoding="async">
+              <span class="badge">NEW</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Браслет Lattice</div>
+              <div class="card-meta">Эластичный браслет из золота 585 с бриллиантовой дорожкой.</div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media" data-cta="Узнать подробнее">
+              <img src="images/new3.jpg" srcset="images/new3.jpg 480w, images/new3.jpg 960w" sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 300px" alt="Золотое кольцо DALIN с россыпью бриллиантов" loading="lazy" decoding="async">
+              <span class="badge">NEW</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Кольцо Galatea</div>
+              <div class="card-meta">Ювелирное кольцо из золота 585 с россыпью бриллиантов.</div>
+            </div>
+          </article>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#contact">Записаться на презентацию</a>
+          <a class="btn btn-outline" href="#collections">Смотреть каталоги</a>
+        </div>
+      </div>
+    </section>
+  
+    <section class="section alt" id="care">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Уход за украшениями</h2>
+          <p class="section-desc">Советы по хранению и чистке ювелирных украшений DALIN, чтобы золото и серебро сохраняли блеск долгие годы.</p>
+        </div>
+        <div class="care reveal">
+          <details open><summary>Хранение украшений</summary><p style="color:var(--muted)">Держите изделия отдельно в мягких мешочках, избегайте контакта с абразивами и прямым солнечным светом.</p></details>
+          <details><summary>Чистка золота и серебра</summary><p style="color:var(--muted)">Используйте мягкую щетку и профессиональные средства, избегайте агрессивных химикатов и горячей воды.</p></details>
+          <details><summary>Натуральные камни</summary><p style="color:var(--muted)">Бережно протирайте камни сухой микрофиброй, снимайте украшения перед спортом и косметическими процедурами.</p></details>
+          <details><summary>Профессиональный сервис</summary><p style="color:var(--muted)">Раз в год приносите украшения в салон DALIN для диагностики закрепок и полировки.</p></details>
+        </div>
+      </div>
+    </section>
+  
+    <section class="section panel" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Записаться на подбор украшений</h2>
+          <p class="section-desc">Оставьте детали запроса, и куратор подготовит подборку украшений и назначит визит в шоурум.</p>
+        </div>
+        <div class="about" style="background:#fff;border:none;">
+          <div class="inner" style="padding:26px;">
+            <div>
+              <h3 style="margin-top:0">Запланируйте визит</h3>
+              <div class="divider" style="background:linear-gradient(to right, transparent, rgba(212,175,55,.6), transparent);"></div>
+              <form id="contactForm" class="reveal contact-form" aria-label="Заявка на подбор украшений" novalidate>
+                <div class="form-grid">
+                  <label class="form-field">Имя
+                    <input required type="text" name="name" autocomplete="name" placeholder="Например, Анна">
+                  </label>
+                  <label class="form-field">Email
+                    <input required type="email" name="email" autocomplete="email" placeholder="you@example.com">
+                  </label>
+                  <label class="form-field">Телефон
+                    <input required type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="^\+?[0-9\s\-()]{7,}$" placeholder="+7 (900) 000-00-00">
+                  </label>
+                </div>
+                <label class="form-field form-field--full">Комментарий
+                  <textarea name="message" rows="4" placeholder="Расскажите о желаемых украшениях" required></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="btn" type="submit">Отправить заявку</button>
+                  <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                </div>
+              </form>
+            </div>
+            <div class="media reveal">
+              <img src="images/showroom.jpg" srcset="images/showroom.jpg 480w, images/showroom.jpg 960w" sizes="(max-width:680px) 100vw, 560px" alt="Шоурум DALIN — приватная зона для примерки украшений" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
   <div class="container">
     <div class="cols">
       <div>
         <div class="brand"><span class="dot"></span> DALIN</div>
-        <p class="note">Украшения, сделанные бережно. © <span id="year"></span> DALIN.</p>
+        <p class="note">Ювелирный дом, созданный в Москве. © <span id="year"></span> DALIN.</p>
         <div class="soc">
           <a href="#">Instagram</a><a href="#">Telegram</a><a href="#">WhatsApp</a>
         </div>
       </div>
-      <div><strong>Поддержка</strong><br><small>help@dalin.example</small><br><small>+7 (900) 000-00-00</small></div>
-      <div><strong>Адрес шоу-рума</strong><br><small>Москва, Большая Никитская, 25с1</small><br><small>Ежедневно 11:00–20:00</small></div>
+      <div>
+        <strong>Разделы</strong>
+        <nav class="footer-nav" aria-label="Дополнительная навигация">
+          <a href="#collections">Коллекции</a>
+          <a href="#new">Новинки</a>
+          <a href="#care">Уход за украшениями</a>
+        </nav>
+      </div>
+      <div>
+        <strong>Контакты</strong><br><small><a href="mailto:help@dalin.example">help@dalin.example</a></small><br><small><a href="tel:+79000000000">+7 (900) 000-00-00</a></small>
+      </div>
+      <div>
+        <strong>Шоурум</strong><br><small>Москва, Петровка, 25с1</small><br><small>Ежедневно 11:00–20:00</small>
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
-// Год
+// Р“РѕРґ
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Хедер фон при скролле
+// РҐРµРґРµСЂ С„РѕРЅ РїСЂРё СЃРєСЂРѕР»Р»Рµ
 const header = document.getElementById('header');
 const setHeaderState = ()=> header.classList.toggle('is-scrolled', window.scrollY>4);
 setHeaderState(); window.addEventListener('scroll', setHeaderState, {passive:true});
 
-// Бургер-меню
-const burger = document.getElementById('burger');
-const navLinks = document.getElementById('navLinks');
-burger.addEventListener('click', ()=>{ burger.classList.toggle('is-open'); navLinks.classList.toggle('open'); });
+// Р‘СѓСЂРіРµСЂ-РјРµРЅСЋ
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  burger.addEventListener('click', ()=>{
+    const expanded = burger.getAttribute('aria-expanded') === 'true';
+    burger.classList.toggle('is-open');
+    navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', (!expanded).toString());
+  });
 
-// Плавная прокрутка
+// РџР»Р°РІРЅР°СЏ РїСЂРѕРєСЂСѓС‚РєР°
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const id=a.getAttribute('href'); if(id.length>1){ const el=document.querySelector(id);
-      if(el){ e.preventDefault(); const top=el.getBoundingClientRect().top+window.scrollY-80; window.scrollTo({top,behavior:'smooth'});
-             navLinks.classList.remove('open'); burger.classList.remove('is-open'); }
+      if(el){ e.preventDefault(); const top=el.getBoundingClientRect().top+window.scrollY-80; window.scrollTo({top,behavior:prefersReducedMotion.matches?'auto':'smooth'});
+             navLinks.classList.remove('open'); burger.classList.remove('is-open'); burger.setAttribute('aria-expanded','false'); }
     }}
   );
 });
 
-// Подсветка активного пункта
+// РџРѕРґСЃРІРµС‚РєР° Р°РєС‚РёРІРЅРѕРіРѕ РїСѓРЅРєС‚Р°
 const sections=[...document.querySelectorAll('section[id]')];
 const links=[...document.querySelectorAll('.nav-links a')];
 const spy=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     const id=entry.target.id; const link=links.find(l=>l.getAttribute('href')==='#'+id);
-    if(entry.isIntersecting && link){ links.forEach(l=>l.classList.remove('active')); link.classList.add('active'); }
+    if(entry.isIntersecting && link){
+      links.forEach(l=>l.removeAttribute('aria-current'));
+      link.setAttribute('aria-current','page');
+    }
   });
 },{rootMargin:'-55% 0px -42% 0px',threshold:0.01});
 sections.forEach(s=>spy.observe(s));
+
+// Card parallax
+  const cardMediaImages=[...document.querySelectorAll('.card-media img')];
+  let parallaxActive=false;
+  const parallaxHandler=()=>{
+    const halfWin=window.innerHeight/2||1;
+    cardMediaImages.forEach(img=>{
+      const rect=img.getBoundingClientRect();
+      const offset=((rect.top+rect.height/2)-halfWin)/halfWin;
+      const translate=Math.max(Math.min(offset*12,12),-12);
+      img.style.setProperty('--parallax', `${translate.toFixed(2)}px`);
+    });
+  };
+  const enableParallax=()=>{
+    if(parallaxActive||prefersReducedMotion.matches||!cardMediaImages.length) return;
+    parallaxActive=true;
+    parallaxHandler();
+    window.addEventListener('scroll', parallaxHandler, {passive:true});
+    window.addEventListener('resize', parallaxHandler);
+  };
+  const disableParallax=()=>{
+    if(!parallaxActive) return;
+    parallaxActive=false;
+    window.removeEventListener('scroll', parallaxHandler);
+    window.removeEventListener('resize', parallaxHandler);
+    cardMediaImages.forEach(img=>img.style.setProperty('--parallax','0px'));
+  };
+  if(!prefersReducedMotion.matches){ enableParallax(); }
+  prefersReducedMotion.addEventListener('change', e=>{ e.matches ? disableParallax() : enableParallax(); });
 
 // Reveal-on-scroll
 const revealEls=document.querySelectorAll('.reveal');
@@ -387,6 +561,47 @@ const io=new IntersectionObserver((entries)=>{
   entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
 },{threshold:0.18});
 revealEls.forEach(el=>io.observe(el));
+
+// Contact form
+  const contactForm=document.getElementById('contactForm');
+  const formStatus=document.getElementById('formStatus');
+  if(contactForm && formStatus){
+    contactForm.addEventListener('submit', event=>{
+      event.preventDefault();
+      formStatus.textContent='';
+      formStatus.removeAttribute('data-state');
+      if(!contactForm.checkValidity()){
+        contactForm.reportValidity();
+        formStatus.textContent='Проверьте корректность полей.';
+        formStatus.setAttribute('data-state','error');
+        return;
+      }
+      formStatus.textContent='Отправляем заявку...';
+      formStatus.setAttribute('data-state','pending');
+      contactForm.classList.add('is-pending');
+      setTimeout(()=>{
+        formStatus.textContent='Спасибо! Мы свяжемся с вами в течение рабочего дня.';
+        formStatus.setAttribute('data-state','success');
+        contactForm.reset();
+        contactForm.classList.remove('is-pending');
+      }, 1200);
+    });
+  }
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
